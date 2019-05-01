@@ -1,4 +1,0 @@
-all: ../bin/boot_sect.bin
-
-../bin/boot_sect.bin: boot_sector.asm
-	nasm boot_sector.asm -f bin -o ../bin/boot_sect.bin
