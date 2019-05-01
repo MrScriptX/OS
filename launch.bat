@@ -1,0 +1,1 @@
+"C:\Program Files\qemu\qemu-system-x86_64" -drive format=raw,file=bin/os_image.img,index=0,if=floppy

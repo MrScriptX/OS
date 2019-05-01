@@ -1,0 +1,1 @@
+nasm ../bootloader/boot-sector.asm -f bin -o ../bin/boot_sect.bin
