@@ -25,5 +25,8 @@ kernel.bin: kernel/kernel_entry.o ${OBJ}
 	nasm $< -f bin -i 'boot/' -o $@
 
 clean:
-	rm -fr *.bin *.dis *.o
-	rm -fr kernel/*.o boot/*.bin
+	del *.bin 
+	del *.dis 
+	del *.o
+	del kernel\*.o 
+	del boot\*.bin
