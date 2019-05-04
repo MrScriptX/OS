@@ -45,9 +45,9 @@ BEGIN_PM:
 
 BOOT_DRIVE: db 0
 MSG_LOAD_KERNEL: db "Kernel is loading", 0
+MSG_KERNEL_LOADED: db "Kernel is loaded", 0
 MSG_REAL_MODE: db "16-bits REAL MODE enable", 0
 MSG_PROT_MODE: db "32-bits PROTECT MODE enable", 0
-MSG_KERNEL_LOADED: db "Kernel is loaded", 0
 
 times 510-($-$$) db 0
 dw 0xaa55
