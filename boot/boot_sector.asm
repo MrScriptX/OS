@@ -20,6 +20,7 @@ KERNEL_OFFSET equ 0x1000
 %include "print-string.asm"
 %include "print-string-pm.asm"
 %include "gdt.asm"
+%include "screen/clear_screen.asm"
 
 [bits 16]
 load_kernel:
@@ -38,6 +39,7 @@ load_kernel:
 
 [bits 32]
 BEGIN_PM:
+	call clear_screen
     mov ebx, MSG_PROT_MODE
     call print_string_pm
 	call KERNEL_OFFSET
