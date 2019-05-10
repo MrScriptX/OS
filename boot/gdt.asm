@@ -4,6 +4,7 @@ gdt_null: ; null descriptor
     dd 0x0
     dd 0x0
 
+;kernel space
 gdt_code: ; code segment descriptor : base=0x0, end=0xfffff
     dw 0xffff ; limit (0-15 bits)
     dw 0x0 ; base (0-15 bits)
@@ -19,6 +20,9 @@ gdt_data: ; data segment descriptor
     db 10010010b ; 1st flags + type flags : (code)0 (expand down)0 (writable)1 (accessed)0
     db 11001111b
     db 0x0
+
+;user space
+
 
 gdt_end:
 

@@ -21,9 +21,4 @@ init_pm:
     mov ebp, 0x90000
     mov esp, ebp
 
-	;mov ebx, DEBUG_MSG
-	;call print_string_pm
-
     call BEGIN_PM
-
-;DEBUG_MSG: db "DEBUG HERE", 0
