@@ -1,6 +1,7 @@
+#include "../drivers/screen.h"
+
 __main()
 {
-	//char* video_address = (char*)0xb8000;
-	
-	//*video_address = '';
+	char* video_memory = (char*)VIDEO_ADDRESS;
+	*video_memory = 'X';
 }

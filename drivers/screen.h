@@ -14,5 +14,8 @@
 #define REG_SCREEN_CTRL 0x3D4//type of data
 #define REG_SCREEN_DATA 0x3D5//data itself
 
+void print(char*);
+void print_at(char*, int, int);
+
 
 #endif // !_SCREEN_H
