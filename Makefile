@@ -1,5 +1,5 @@
-C_SOURCES = $(wildcard kernel/*.c)
-HEADERS = $(wildcard kernel/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
+HEADERS = $(wildcard kernel/*.h drivers/*.h)
 
 OBJ = ${C_SOURCES:.c=.o}
 
@@ -12,7 +12,7 @@ os_image.img: boot/boot_sector.bin kernel.bin
 	type boot\boot_sector.bin kernel.bin > os_image.img
 
 kernel.bin: kernel/kernel_entry.o ${OBJ}
-	ld -T NUL -o kernel.tmp -Ttext 0x1000 kernel/kernel_entry.o kernel/kernel.o
+	ld -T NUL -o kernel.tmp -Ttext 0x1000 kernel/kernel_entry.o $^
 	objcopy -O binary -j .text  kernel.tmp kernel.bin
 
 %.o : %.c ${HEADERS}
@@ -26,7 +26,7 @@ kernel.bin: kernel/kernel_entry.o ${OBJ}
 
 clean:
 	del *.bin 
-	del *.dis 
-	del *.o
+	del *.img
+	del drivers\*.o
 	del kernel\*.o 
 	del boot\*.bin

@@ -1,8 +1,6 @@
 #ifndef _SCREEN_H
 #define _SCREEN_H
 
-#include "../kernel/low_level.h"
-
 #define VIDEO_ADDRESS 0xb8000
 #define MAX_ROWS 25
 #define MAX_COLS 80
@@ -14,8 +12,9 @@
 #define REG_SCREEN_CTRL 0x3D4//type of data
 #define REG_SCREEN_DATA 0x3D5//data itself
 
+void print_at(char* msg, int, int);
 void print(char*);
-void print_at(char*, int, int);
+int handle_scrolling(int);
 
 
 #endif // !_SCREEN_H
