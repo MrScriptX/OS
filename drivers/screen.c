@@ -26,7 +26,7 @@ void print_at(char* msg, int col, int row)
 
 void print(char* msg)
 {
-	print_at(msg, -1, -1);
+	//print_at(msg, -1, -1);
 }
 
 int get_screen_offset(int col, int row)
