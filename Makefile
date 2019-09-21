@@ -1,7 +1,8 @@
 C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
+ASM_SOURCES = $(wildcard kernel/*.asm)
 HEADERS = $(wildcard kernel/*.h drivers/*.h)
 
-OBJ = ${C_SOURCES:.c=.o}
+OBJ = ${C_SOURCES:.c=.o} ${ASM_SOURCES:.asm=.o}
 
 all: os_image.img
 
@@ -11,15 +12,15 @@ run: all
 os_image.img: boot/boot_sector.bin kernel.bin
 	type boot\boot_sector.bin kernel.bin > os_image.img
 
-kernel.bin: kernel/kernel_entry.o ${OBJ}
-	ld -T NUL -o kernel.tmp -Ttext 0x1000 kernel/kernel_entry.o $^
-	objcopy -O binary -j .text  kernel.tmp kernel.bin
+kernel.bin: ${OBJ}
+	ld -mi386pe -T link.ld -o kernel.tmp $^
+	objcopy -O binary kernel.tmp kernel.bin
 
 %.o : %.c ${HEADERS}
-	gcc -ffreestanding -c $< -o $@
+	gcc -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
 
 %.o : %.asm
-	nasm $< -f win64 -o $@
+	nasm $< -f win32 -o $@
 
 %.bin: %.asm
 	nasm $< -f bin -i 'boot/' -o $@

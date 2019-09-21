@@ -1,4 +1,9 @@
+global _start
+
 [bits 32]
-[extern __main]
-call __main
+section .text.bootstrap
+
+_start:
+[extern ___main]
+call ___main
 jmp $
