@@ -2,11 +2,11 @@
 #include "low_level.h"
 
 int get_offset_row(int);
-//int get_offset_col(int);
 int get_screen_offset(int, int);
-void memory_copy(char* src, char* dst, int no_bytes);
 int get_cursor();
 void set_cursor(int offset);
+int handle_scrolling(int);
+void memory_copy(char* src, char* dst, int no_bytes);
 void print_char(char c, int col, int row, char attrib_byte);
 
 
