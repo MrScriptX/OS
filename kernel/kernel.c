@@ -2,8 +2,6 @@
 
 __main()
 {
-	/*char* video_memory = (char*)VIDEO_ADDRESS;
-	*video_memory = 'X';*/
-
-	print("Hello");
+	clear_screen();
+	print("Hello ! I am your computer. Don't worry, I am a good computer :)");
 }

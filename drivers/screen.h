@@ -12,8 +12,9 @@
 #define REG_SCREEN_CTRL 0x3D4//type of data
 #define REG_SCREEN_DATA 0x3D5//data itself
 
-void print_at(char* msg, int, int);
 void print(char*);
+void print_at(char*, int, int);
+void clear_screen();
 int handle_scrolling(int);
 
 
