@@ -1,6 +1,6 @@
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
-ASM_SOURCES = $(wildcard kernel/*.asm)
-HEADERS = $(wildcard kernel/*.h drivers/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
+ASM_SOURCES = $(wildcard kernel/*.asm cpu/*.asm)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
 
 OBJ = ${C_SOURCES:.c=.o} ${ASM_SOURCES:.asm=.o}
 
@@ -30,4 +30,5 @@ clean:
 	del *.img
 	del drivers\*.o
 	del kernel\*.o 
+	del cpu\*.o
 	del boot\*.bin
