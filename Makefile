@@ -2,7 +2,7 @@ C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
 ASM_SOURCES = $(wildcard kernel/*.asm cpu/*.asm)
 HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
 
-OBJ = ${C_SOURCES:.c=.o} ${ASM_SOURCES:.asm=.o}
+OBJ = ${ASM_SOURCES:.asm=.o} ${C_SOURCES:.c=.o}
 
 all: os_image.img
 
@@ -12,7 +12,7 @@ run: all
 os_image.img: boot/boot_sector.bin kernel.bin
 	type boot\boot_sector.bin kernel.bin > os_image.img
 
-kernel.bin: ${OBJ}
+kernel.bin: ${OBJ} ${CPU_OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
 	objcopy -O binary kernel.tmp kernel.bin
 

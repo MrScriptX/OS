@@ -22,7 +22,7 @@ interrupt_common_handler:
 	sti
 	iret
 
-global isr0
+global interrupt_handler_0
 global interrupt_handler_1
 global interrupt_handler_2
 global interrupt_handler_3

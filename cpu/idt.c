@@ -50,11 +50,11 @@ void isr_handler(registers_t r)
 
 void set_idt_gate(int gate, unsigned int handler)
 {
-	idt[gate].low_offset = (unsigned short)handler & 0xFFFF;
+	idt[gate].low_offset = (unsigned short)(handler & 0xFFFF);
 	idt[gate].sel = KERNEL_CS;
 	idt[gate].always0 = 0;
 	idt[gate].flags = 0x8E;
-	idt[gate].high_offset = (unsigned short)(handler >> 16) & 0xFFFF;
+	idt[gate].high_offset = (unsigned short)((handler >> 16) & 0xFFFF);
 }
 
 void set_idt()

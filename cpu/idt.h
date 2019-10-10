@@ -1,8 +1,6 @@
 #ifndef IDT_H
 #define IDT_H
 
-#define KERNEL_CS 0x08
-
 extern void interrupt_handler_0();
 extern void interrupt_handler_1();
 extern void interrupt_handler_2();
@@ -35,6 +33,9 @@ extern void interrupt_handler_28();
 extern void interrupt_handler_29();
 extern void interrupt_handler_30();
 extern void interrupt_handler_31();
+
+
+#define KERNEL_CS 0x08
 
 typedef struct
 {
