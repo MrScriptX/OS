@@ -12,12 +12,12 @@ run: all
 os_image.img: boot/boot_sector.bin kernel.bin
 	type boot\boot_sector.bin kernel.bin > os_image.img
 
-kernel.bin: ${OBJ} ${CPU_OBJ}
+kernel.bin: ${OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
 	objcopy -O binary kernel.tmp kernel.bin
 
 %.o : %.c ${HEADERS}
-	gcc -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
+	gcc -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
 
 %.o : %.asm
 	nasm $< -f win32 -o $@
