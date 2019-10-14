@@ -1,8 +1,8 @@
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
-ASM_SOURCES = $(wildcard kernel/*.asm)
-HEADERS = $(wildcard kernel/*.h drivers/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
+ASM_SOURCES = $(wildcard kernel/*.asm cpu/*.asm)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
 
-OBJ = ${C_SOURCES:.c=.o} ${ASM_SOURCES:.asm=.o}
+OBJ = ${ASM_SOURCES:.asm=.o} ${C_SOURCES:.c=.o}
 
 all: os_image.img
 
@@ -17,7 +17,7 @@ kernel.bin: ${OBJ}
 	objcopy -O binary kernel.tmp kernel.bin
 
 %.o : %.c ${HEADERS}
-	gcc -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
+	gcc -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
 
 %.o : %.asm
 	nasm $< -f win32 -o $@
@@ -30,4 +30,5 @@ clean:
 	del *.img
 	del drivers\*.o
 	del kernel\*.o 
+	del cpu\*.o
 	del boot\*.bin
