@@ -1,6 +1,10 @@
 #include "idt.h"
 
 #include "../drivers/screen.h"
+#include "../drivers/low_level.h"
+
+
+isr_t interrupt_handler[256];
 
 void set_idt_gate(int gate, unsigned int handler);
 void set_idt();
@@ -40,12 +44,56 @@ void isr_install()
 	set_idt_gate(30, (unsigned int)interrupt_handler_30);
 	set_idt_gate(31, (unsigned int)interrupt_handler_31);
 
+	port_byte_out(0x20, 0x11);
+	port_byte_out(0xA0, 0x11);
+	port_byte_out(0x21, 0x20);
+	port_byte_out(0xA1, 0x28);
+	port_byte_out(0x21, 0x04);
+	port_byte_out(0xA1, 0x02);
+	port_byte_out(0x21, 0x01);
+	port_byte_out(0xA1, 0x01);
+	port_byte_out(0x21, 0x0);
+	port_byte_out(0xA1, 0x0);
+
+	set_idt_gate(32, (unsigned int)irq0);
+	set_idt_gate(33, (unsigned int)irq1);
+	set_idt_gate(34, (unsigned int)irq2);
+	set_idt_gate(35, (unsigned int)irq3);
+	set_idt_gate(36, (unsigned int)irq4);
+	set_idt_gate(37, (unsigned int)irq5);
+	set_idt_gate(38, (unsigned int)irq6);
+	set_idt_gate(39, (unsigned int)irq7);
+	set_idt_gate(40, (unsigned int)irq8);
+	set_idt_gate(41, (unsigned int)irq9);
+	set_idt_gate(42, (unsigned int)irq10);
+	set_idt_gate(43, (unsigned int)irq11);
+	set_idt_gate(44, (unsigned int)irq12);
+	set_idt_gate(45, (unsigned int)irq13);
+	set_idt_gate(46, (unsigned int)irq14);
+	set_idt_gate(47, (unsigned int)irq15);
+
 	set_idt();
 }
 
 void isr_handler(registers_t r)
 {
 	print("Interrupt received: ");
+}
+
+void irq_handler(registers_t r)
+{
+	if (r.int_no >= 40)
+	{
+		port_byte_out(0xA0, 0x20);
+	}
+
+	port_byte_out(0x20, 0x20);
+
+	if (interrupt_handler[r.int_no] != 0)
+	{
+		isr_t handler = interrupt_handler[r.int_no];
+		handler(r);
+	}
 }
 
 void set_idt_gate(int gate, unsigned int handler)
