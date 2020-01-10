@@ -33,3 +33,4 @@ build:
 
 clean:
 	del /S /Q *.o *.tmp *.bin
+	rmdir /S /Q build
