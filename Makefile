@@ -15,8 +15,9 @@ os_image.img: boot/boot_sector.bin kernel.bin
 kernel.bin: ${OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
 	objcopy -O binary kernel.tmp kernel.bin
+	del kernel.tmp
 
-%.o : %.c ${HEADERS}
+%.o : %.c ${HEADERS} build
 	gcc -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
 
 %.o : %.asm
@@ -24,6 +25,9 @@ kernel.bin: ${OBJ}
 
 %.bin: %.asm
 	nasm $< -f bin -i 'boot/' -o $@
+
+build:
+	mkdir build
 
 clean:
 	del *.bin 
