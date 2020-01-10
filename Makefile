@@ -32,3 +32,4 @@ clean:
 	del kernel\*.o 
 	del cpu\*.o
 	del boot\*.bin
+	del *.tmp
