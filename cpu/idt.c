@@ -78,6 +78,8 @@ void isr_install()
 void isr_handler(registers_t r)
 {
 	print("Interrupt received: ");
+	print(r.err_code);
+	print("\n");
 }
 
 void irq_handler(registers_t r)

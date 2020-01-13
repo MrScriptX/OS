@@ -85,9 +85,10 @@ idt_gate_t idt[IDT_ENTRIES];
 idt_register_t idt_reg;
 
 typedef void (*isr_t)(registers_t);
+void register_interrupt_handler(unsigned char n, isr_t handler);
 
 void isr_install();
 void isr_handler(registers_t r);
-void register_interrupt_handler(unsigned char n, isr_t handler);
+
 
 #endif // !IDT_H
