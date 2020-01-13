@@ -112,3 +112,8 @@ void set_idt()
 
 	__asm__ __volatile__("lidtl (%0)" : : "r" (&idt_reg));
 }
+
+void register_interrupt_handler(unsigned char n, isr_t handler)
+{
+	interrupt_handler[n] = handler;
+}

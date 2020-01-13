@@ -51,6 +51,9 @@ extern void irq13();
 extern void irq14();
 extern void irq15();
 
+#define IRQ0 32
+#define IRQ1 33
+
 
 #define KERNEL_CS 0x08
 
@@ -85,5 +88,6 @@ typedef void (*isr_t)(registers_t);
 
 void isr_install();
 void isr_handler(registers_t r);
+void register_interrupt_handler(unsigned char n, isr_t handler);
 
 #endif // !IDT_H
