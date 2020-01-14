@@ -8,7 +8,7 @@ static void keyboard_callback(registers_t regs)
     print("scancode: ");
     print(sc_ascii);
     print(", ");
-    print((char*)&scancode);
+    print_letter(scancode);
     print("\n");
 }
 
@@ -17,7 +17,7 @@ void init_keyboard()
     register_interrupt_handler(IRQ1, keyboard_callback);
 }
 
-
+//can be better
 void print_letter(unsigned char scancode)
 {
     switch (scancode) {
