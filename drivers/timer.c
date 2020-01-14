@@ -9,9 +9,13 @@ unsigned int tick = 0;
 static void timer_callback(registers_t regs)
 {
     tick++;
-    print("Tick: ");
-    //print(tick);
-    print("\n");
+
+    char* nb;
+    int_to_ascii(tick, nb);
+
+    /*print("Tick: ");
+    print(nb);
+    print("\n");*/
 }
 
 void init_timer(unsigned int freq)
