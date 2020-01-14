@@ -5,12 +5,17 @@
 
 __main()
 {
+	clear_screen();
+
 	isr_install();
-	//init_timer(50);
+
+	__asm__ __volatile__("sti");
+
+	init_timer(50);
 	//init_keyboard();
 
-	__asm__ __volatile__("int $2");
-	__asm__ __volatile__("int $3");
+	//__asm__ __volatile__("int $2");
+	//__asm__ __volatile__("int $3");
 
 	//clear_screen();
 	//print("Hello ! I am your computer. Don't worry, I am a good computer :)");
