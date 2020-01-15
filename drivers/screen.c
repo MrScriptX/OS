@@ -54,11 +54,21 @@ void print_char(char c, int col, int row, char attrib_byte)
 		int rows = offset / (2 * MAX_COLS);
 		offset = get_screen_offset(0, rows + 1);
 	}
+	else if(c == '\b')
+	{
+		offset -= 2;//select previous char
+		video_memory[offset] = '\0';
+		video_memory[offset + 1] = WHITE_ON_BLACK;
+	}
+	else if(c == '\t')
+	{
+		offset += 8;//4 char to the right
+	}
 	else
 	{
 		video_memory[offset] = c;
 		video_memory[offset + 1] = attrib_byte;
-		offset += 2;
+		offset += 2;//next char
 	}
 
 	offset = handle_scrolling(offset);
@@ -72,7 +82,7 @@ void clear_screen()
 
 	int i;
 	for (i = 0; i < screen_size; i++) {
-		video_memory[i * 2] = ' ';
+		video_memory[i * 2] = '\0';
 		video_memory[i * 2 + 1] = WHITE_ON_BLACK;
 	}
 
