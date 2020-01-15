@@ -12,7 +12,7 @@ __main()
 	__asm__ __volatile__("sti");
 
 	init_timer(50);
-	//init_keyboard();
+	init_keyboard();
 
 	//__asm__ __volatile__("int $2");
 	//__asm__ __volatile__("int $3");
