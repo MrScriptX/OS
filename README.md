@@ -35,6 +35,12 @@ gcc est un compilateur de code C. Il est disponible sous forme de package avec d
 
 Ajouter le dossier bin de mingw à vos variables environnement afin d'avoir acces au diffèrent outils.
 
+### qemu
+
+qemu est un emulateur et un outils de virtualisation très leger et gratuit. Téléchargez la dernière version disponible de [qemu](https://www.qemu.org/download/#windows).
+
+Ajouter le dossier du programme aux variables environnement.
+
 ### Installation et lancement du projet
 
 Maintenant que les différents outils nécéssaire à l'installation du projet sont installés, passons à l'installation du projet même. Ouvrez un terminal : 
