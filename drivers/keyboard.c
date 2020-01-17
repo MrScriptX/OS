@@ -4,6 +4,8 @@
 #define BACKSPACE 0x0E
 #define MAX_CHAR 0x39
 
+char *input_buffer = "";
+
 char* ASCII_QWERTY[] = {'?', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9',
     '0', '-', '+', '\b', '\t', 'Q', 'W', 'E', 'R', 'T',
     'Y', 'U', 'I', 'O', 'P', '[', ']', '\n', '?', 'A',
@@ -24,7 +26,7 @@ static void keyboard_callback(registers_t regs)
     }
     else if(scancode == ENTER)// press enter
     {
-        
+        execute_cmd(input_buffer);
     }
     else if(scancode == BACKSPACE)//press backspace
     {
@@ -32,10 +34,10 @@ static void keyboard_callback(registers_t regs)
     }
     else
     {
-        
+        append(input_buffer, ASCII_QWERTY[scancode]);
+        append(input_buffer, '\0');
+        print_letter(scancode);
     }
-
-    print_letter(scancode);
 }
 
 void init_keyboard()

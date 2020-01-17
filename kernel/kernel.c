@@ -5,8 +5,6 @@
 
 __main()
 {
-	clear_screen();
-
 	isr_install();
 
 	__asm__ __volatile__("sti");
@@ -17,6 +15,6 @@ __main()
 	//__asm__ __volatile__("int $2");
 	//__asm__ __volatile__("int $3");
 
-	//clear_screen();
-	//print("Hello ! I am your computer. Don't worry, I am a good computer :)");
+	clear_screen();
+	print("Hello ! I am your computer. Don't worry, I am a good computer :)\n");
 }
