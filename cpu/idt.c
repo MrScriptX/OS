@@ -78,6 +78,8 @@ void isr_install()
 void isr_handler(registers_t r)
 {
 	print("Interrupt received: ");
+	print(r.err_code);
+	print("\n");
 }
 
 void irq_handler(registers_t r)
@@ -111,4 +113,9 @@ void set_idt()
 	idt_reg.limit = IDT_ENTRIES * sizeof(idt_gate_t) - 1;
 
 	__asm__ __volatile__("lidtl (%0)" : : "r" (&idt_reg));
+}
+
+void register_interrupt_handler(unsigned char n, isr_t handler)
+{
+	interrupt_handler[n] = handler;
 }

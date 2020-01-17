@@ -35,3 +35,8 @@ unsigned char read_scan_code()
 {
 	return port_byte_in(KBD_DATA_PORT);
 }
+
+int readline(char *newbuffer, int size)
+{
+	
+}
