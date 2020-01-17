@@ -41,7 +41,7 @@ qemu est un emulateur et un outils de virtualisation très leger et gratuit. Té
 
 Ajouter le dossier du programme aux variables environnement.
 
-### Installation et lancement du projet
+## Installation et lancement du projet
 
 Maintenant que les différents outils nécéssaire à l'installation du projet sont installés, passons à l'installation du projet même. Ouvrez un terminal : 
 
