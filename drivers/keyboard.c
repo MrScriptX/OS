@@ -28,6 +28,7 @@ static void keyboard_callback(registers_t regs)
     else if(scancode == ENTER)// press enter
     {
         execute_cmd(input_buffer);
+        input_buffer[0] = '\0';
     }
     else if(scancode == BACKSPACE)//press backspace
     {
