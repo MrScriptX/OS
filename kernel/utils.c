@@ -79,6 +79,12 @@ void append(char s[], char n)
     s[len+1] = '\0';
 }
 
+void subtract(char s[])
+{
+    int len = strlen(s) - 1;
+    s[len] = '\0'; 
+}
+
 int strcmp(char s1[], char s2[])
 {
     int i;

@@ -23,6 +23,7 @@ static void keyboard_callback(registers_t regs)
     if(scancode > MAX_CHAR)//key up
     {
         //print("key up"); //log purpose
+        return;
     }
     else if(scancode == ENTER)// press enter
     {
@@ -30,14 +31,15 @@ static void keyboard_callback(registers_t regs)
     }
     else if(scancode == BACKSPACE)//press backspace
     {
-        //print("ret"); //log purpose
+        subtract(input_buffer);
     }
     else
     {
         append(input_buffer, ASCII_QWERTY[scancode]);
         append(input_buffer, '\0');
-        print_letter(scancode);
     }
+
+    print_letter(scancode);
 }
 
 void init_keyboard()
