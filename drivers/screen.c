@@ -51,18 +51,31 @@ void print_char(char c, int col, int row, char attrib_byte)
 
 	if (c == '\n')
 	{
+		video_memory[offset] = ' ';
+		video_memory[offset + 1] = attrib_byte;
+
 		int rows = offset / (2 * MAX_COLS);
 		offset = get_screen_offset(0, rows + 1);
 	}
 	else if(c == '\b')
 	{
-		offset -= 2;//select previous char
+		do
+		{
+			offset -= 2;//select previous char
+		} while (video_memory[offset] == '\0');
+
 		video_memory[offset] = '\0';
 		video_memory[offset + 1] = WHITE_ON_BLACK;
 	}
 	else if(c == '\t')
 	{
-		offset += 8;//4 char to the right
+		int i;
+		for(i = 0; i < 4; i++)//make 4 spaces
+		{
+			video_memory[offset] = ' ';
+			video_memory[offset + 1] = attrib_byte;
+			offset += 2;
+		}
 	}
 	else
 	{
