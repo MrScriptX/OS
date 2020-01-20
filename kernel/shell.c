@@ -2,8 +2,9 @@
 
 void execute_cmd(char* cmd)
 {
-    if(cmd == "SHUTDOWN")
+    if(!strcmp(cmd, "SHUTDOWN"))
     {
+        clear_screen();
         __asm__ __volatile__("hlt");
     }
     else

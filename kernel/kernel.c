@@ -16,5 +16,5 @@ __main()
 	//__asm__ __volatile__("int $3");
 
 	clear_screen();
-	print("Hello ! I am your computer. Don't worry, I am a good computer :)\n");
+	print("Hello ! I am your computer. Don't worry, I am a good computer :)\n\n");
 }
