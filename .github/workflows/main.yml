@@ -1,0 +1,32 @@
+name: OS run
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Qemu
+      run: |
+        git clone https://github.com/qemu/qemu.git
+        cd qemu
+        git submodule init
+        git submodule update --recursive
+        git submodule status --recursive
+        git checkout stable-2.9
+        mkdir build
+        cd build
+        ../configure
+        make
+        cd build
+        ls
+      
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
