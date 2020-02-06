@@ -15,6 +15,7 @@ jobs:
         cd qemu
         mkdir build
         cd build
+        ../configure
         make
       
     - name: Run a one-line script
