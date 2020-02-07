@@ -6,13 +6,20 @@ OBJ = ${ASM_SOURCES:.asm=.o} ${C_SOURCES:.c=.o}
 
 BUILD := build
 
+ifdef OS
+COMPILE = type
+
+else
+COMPILE = cat
+endif
+
 all: os_image.img
 
 run: all
 	qemu-system-x86_64 -drive format=raw,file=$(BUILD)\os_image.img,index=0,if=floppy
 
 os_image.img: boot_sector.bin kernel.bin
-	type $(BUILD)\boot_sector.bin $(BUILD)\kernel.bin > $(BUILD)\$@
+	$(COMPILE) $(BUILD)\boot_sector.bin $(BUILD)\kernel.bin > $(BUILD)\$@
 
 kernel.bin: ${OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
