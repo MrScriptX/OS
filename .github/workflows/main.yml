@@ -18,6 +18,9 @@ jobs:
     
     - name: Install GCC
       run: sudo apt-get install gcc
+    
+    - name: Build & Run
+      run: make run
       
     - name: Run a one-line script
       run: echo Hello, world!
