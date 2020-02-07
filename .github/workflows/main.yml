@@ -11,12 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install Qemu
       run: |
-        git clone --recurse-submodules -j8 https://github.com/qemu/qemu.git
-        cd qemu
-        mkdir build
-        cd build
-        ../configure
-        make
+        apt-get install qemu qemu-kvm
       
     - name: Run a one-line script
       run: echo Hello, world!
