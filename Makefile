@@ -12,7 +12,7 @@ COMPILE = type
 DELETE = del /S /Q
 PATH_KERNEL = $(BUILD)\kernel.bin
 PATH_BOOT = $(BUILD)\boot_sector.bin
-PATH_OUTPUT = > $(BUILD)\$@
+PATH_OUTPUT = $(BUILD)\$@
 else
 SYSTEM = elf
 COMPILE = cat
@@ -28,7 +28,7 @@ run: all
 	qemu-system-x86_64 -drive format=raw,file=$(BUILD)/os_image.img,index=0,if=floppy
 
 os_image.img: boot_sector.bin kernel.bin
-	$(COMPILE) $(PATH_BOOT) $(PATH_KERNEL) $(PATH_OUTPUT)
+	$(COMPILE) $(PATH_BOOT) $(PATH_KERNEL) > $(PATH_OUTPUT)
 
 kernel.bin: ${OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
@@ -47,5 +47,5 @@ ${BUILD}:
 	mkdir build
 
 clean:
-	$(DELETE) /S /Q *.o *.tmp *.bin
+	$(DELETE) *.o *.tmp *.bin
 	rmdir /S /Q build
