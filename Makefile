@@ -6,31 +6,46 @@ OBJ = ${ASM_SOURCES:.asm=.o} ${C_SOURCES:.c=.o}
 
 BUILD := build
 
+ifdef OS
+SYSTEM = win32
+COMPILE = type
+DELETE = del /S /Q
+PATH_KERNEL = $(BUILD)\kernel.bin
+PATH_BOOT = $(BUILD)\boot_sector.bin
+PATH_OUTPUT = $(BUILD)\$@
+else
+SYSTEM = elf
+COMPILE = cat
+DELETE = rm
+PATH_KERNEL = $(BUILD)/kernel.bin
+PATH_BOOT = $(BUILD)/boot_sector.bin
+PATH_OUTPUT = $(BUILD)/$@
+endif
+
 all: os_image.img
 
 run: all
-	qemu-system-x86_64 -drive format=raw,file=$(BUILD)\os_image.img,index=0,if=floppy
+	qemu-system-x86_64 -drive format=raw,file=$(BUILD)/os_image.img,index=0,if=floppy
 
 os_image.img: boot_sector.bin kernel.bin
-	type $(BUILD)\boot_sector.bin $(BUILD)\kernel.bin > $(BUILD)\$@
+	$(COMPILE) $(PATH_BOOT) $(PATH_KERNEL) > $(PATH_OUTPUT)
 
 kernel.bin: ${OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
-	objcopy -O binary kernel.tmp $(BUILD)\kernel.bin
-	del /S /Q *.o *.tmp
+	objcopy -O binary kernel.tmp $(BUILD)/$@
 
 %.o : %.c ${HEADERS}
-	gcc -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
+	gcc -fno-pic -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
 
 %.o : %.asm
-	nasm $< -f win32 -o $@
+	nasm $< -f $(SYSTEM) -o $@
 
-%.bin: boot\%.asm ${BUILD}
-	nasm $< -f bin -i 'boot/' -o $(BUILD)\$@
+%.bin: boot/%.asm ${BUILD}
+	nasm $< -f bin -i 'boot/' -o $(BUILD)/$@
 
-build:
+${BUILD}:
 	mkdir build
 
 clean:
-	del /S /Q *.o *.tmp *.bin
+	$(DELETE) *.o *.tmp *.bin
 	rmdir /S /Q build

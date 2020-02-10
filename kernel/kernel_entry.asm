@@ -4,6 +4,6 @@ global _start
 section .text.bootstrap
 
 _start:
-[extern ___main]
-call ___main
+[extern __main]
+call __main
 jmp $

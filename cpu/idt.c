@@ -75,6 +75,7 @@ void isr_install()
 	set_idt();
 }
 
+extern void isr_handler() __asm__("_isr_handler");
 void isr_handler(registers_t r)
 {
 	print("Interrupt received: ");
@@ -82,6 +83,7 @@ void isr_handler(registers_t r)
 	print("\n");
 }
 
+extern void irq_handler() __asm__("_irq_handler");
 void irq_handler(registers_t r)
 {
 	if (r.int_no >= 40)
