@@ -32,7 +32,7 @@ kernel.bin: ${OBJ}
 %.o : %.asm
 	nasm $< -f win32 -o $@
 
-%.bin: boot\%.asm ${BUILD}
+%.bin: boot/%.asm ${BUILD}
 	nasm $< -f bin -i 'boot/' -o $(BUILD)\$@
 
 build:
