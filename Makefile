@@ -32,7 +32,7 @@ os_image.img: boot_sector.bin kernel.bin
 
 kernel.bin: ${OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
-	objcopy -O binary kernel.tmp $(PATH_KERNEL)
+	objcopy -O binary kernel.tmp $(BUILD)/$@
 	$(DELETE) *.o *.tmp
 
 %.o : %.c ${HEADERS}
