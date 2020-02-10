@@ -7,12 +7,14 @@ OBJ = ${ASM_SOURCES:.asm=.o} ${C_SOURCES:.c=.o}
 BUILD := build
 
 ifdef OS
+SYSTEM = win32
 COMPILE = type
 DELETE = del /S /Q
 PATH_KERNEL = $(BUILD)\kernel.bin
 PATH_BOOT = $(BUILD)\boot_sector.bin
 PATH_OUTPUT = > $(BUILD)\$@
 else
+SYSTEM = elf
 COMPILE = cat
 DELETE = rm
 PATH_KERNEL = $(BUILD)/kernel.bin
@@ -30,14 +32,14 @@ os_image.img: boot_sector.bin kernel.bin
 
 kernel.bin: ${OBJ}
 	ld -mi386pe -T link.ld -o kernel.tmp $^
-	objcopy -O binary kernel.tmp $(BUILD)/kernel.bin
+	objcopy -O binary kernel.tmp $(PATH_KERNEL)
 	$(DELETE) *.o *.tmp
 
 %.o : %.c ${HEADERS}
 	gcc -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
 
 %.o : %.asm
-	nasm $< -f win32 -o $@
+	nasm $< -f $(SYSTEM) -o $@
 
 %.bin: boot/%.asm ${BUILD}
 	nasm $< -f bin -i 'boot/' -o $(BUILD)/$@
