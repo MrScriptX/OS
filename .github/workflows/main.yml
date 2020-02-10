@@ -23,7 +23,7 @@ jobs:
       run: sudo apt-get install make
     
     - name: Build & Run
-      run: make -d run
+      run: make run
       
     - name: Run a one-line script
       run: echo Hello, world!
