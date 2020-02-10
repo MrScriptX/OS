@@ -36,7 +36,7 @@ kernel.bin: ${OBJ}
 	$(DELETE) *.o *.tmp
 
 %.o : %.c ${HEADERS}
-	gcc -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
+	gcc -fno-pic -g -m32 -ffreestanding -mno-ms-bitfields -c $< -o $@
 
 %.o : %.asm
 	nasm $< -f $(SYSTEM) -o $@
