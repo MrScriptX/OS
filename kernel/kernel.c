@@ -4,7 +4,6 @@
 #include "../drivers/timer.h"
 
 extern __main() __asm__("__main");
-
 __main()
 {
 	isr_install();
