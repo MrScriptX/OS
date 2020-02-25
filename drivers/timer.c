@@ -3,6 +3,7 @@
 #include "../cpu/idt.h"
 #include "../drivers/screen.h"
 #include "../drivers/low_level.h"
+#include "../kernel/utils.h"
 
 unsigned int tick = 0;
 
