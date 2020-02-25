@@ -19,6 +19,8 @@ char* ASCII_QWERTY[] = {(char*)'?', (char*)'?', (char*)'1', (char*)'2', (char*)'
     (char*)'.', (char*)'/', (char*)'?', (char*)'?', (char*)'?',
     (char*)' ', (char*)'?', (char*)'?'};
 
+void print_letter(unsigned char scancode);
+
 static void keyboard_callback(registers_t regs)
 {
     unsigned char scancode = read_scan_code();
@@ -42,7 +44,7 @@ static void keyboard_callback(registers_t regs)
     }
     else
     {
-        append(input_buffer, ASCII_QWERTY[scancode]);
+        append(input_buffer, (int)ASCII_QWERTY[scancode]);
         append(input_buffer, '\0');
     }
 
@@ -57,5 +59,5 @@ void init_keyboard()
 //can be better
 void print_letter(unsigned char scancode)
 {
-    print(&ASCII_QWERTY[scancode]);
+    print((char*)&ASCII_QWERTY[scancode]);
 }
