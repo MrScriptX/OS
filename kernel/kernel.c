@@ -3,8 +3,9 @@
 #include "../drivers/keyboard.h"
 #include "../drivers/timer.h"
 
-extern __main() __asm__("__main");
-__main()
+extern void __main() __asm__("__main");
+
+void __main()
 {
 	isr_install();
 
