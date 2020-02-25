@@ -6,12 +6,18 @@
 
 char *input_buffer = "";
 
-char* ASCII_QWERTY[] = {'?', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    '0', '-', '+', '\b', '\t', 'Q', 'W', 'E', 'R', 'T',
-    'Y', 'U', 'I', 'O', 'P', '[', ']', '\n', '?', 'A',
-    'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', '\'',
-    '`', '?', '\\', 'Z', 'X', 'C', 'V', 'B', 'N', 'M',
-    ',', '.', '/', '?', '?', '?', ' ', '?', '?'};
+char* ASCII_QWERTY[] = {(char*)'?', (char*)'?', (char*)'1', (char*)'2', (char*)'3', (char*)'4', (char*)'5',
+    (char*)'6', (char*)'7', (char*)'8', (char*)'9', (char*)'0',
+    (char*)'-', (char*)'+', (char*)'\b', (char*)'\t', (char*)'Q',
+    (char*)'W', (char*)'E', (char*)'R', (char*)'T', (char*)'Y',
+    (char*)'U', (char*)'I', (char*)'O', (char*)'P', (char*)'[',
+    (char*)']', (char*)'\n', (char*)'?', (char*)'A', (char*)'S',
+    (char*)'D', (char*)'F', (char*)'G', (char*)'H', (char*)'J',
+    (char*)'K', (char*)'L', (char*)';', (char*)'\'', (char*)'`',
+    (char*)'?', (char*)'\\', (char*)'Z', (char*)'X', (char*)'C',
+    (char*)'V', (char*)'B', (char*)'N', (char*)'M', (char*)',',
+    (char*)'.', (char*)'/', (char*)'?', (char*)'?', (char*)'?',
+    (char*)' ', (char*)'?', (char*)'?'};
 
 static void keyboard_callback(registers_t regs)
 {
