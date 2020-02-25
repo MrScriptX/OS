@@ -26,15 +26,18 @@ next_entry_get_mmap:
 
 start_get_mmap:
     jcxz skip_entry_get_mmap
+
 no_text_get_mmap:
     mov ecx, [es:di + mmap_entry.length]
     test ecx, ecx
     jne good_entry_get_mmap
     mov ecx, [es:di + mmap_entry.length + 4]
     jecxz skip_entry_get_mmap
+
 good_entry_get_mmap:
     inc bp
     add di, 24
+    
 skip_entry_get_mmap:
     cmp ebx, 0
     jne next_entry_get_mmap
