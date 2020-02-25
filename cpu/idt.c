@@ -79,7 +79,7 @@ extern void isr_handler() __asm__("_isr_handler");
 void isr_handler(registers_t r)
 {
 	print("Interrupt received: ");
-	print(r.err_code);
+	print((char*)r.err_code);
 	print("\n");
 }
 
