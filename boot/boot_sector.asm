@@ -11,11 +11,11 @@ KERNEL_OFFSET equ 0x1000
 
     jmp $
 
+%include "gdt.asm"
 %include "load-gdt.asm"
 %include "disk-load.asm"
-%include "print-string.asm"
-%include "print-string-pm.asm"
-%include "gdt.asm"
+%include "screen/print-string.asm"
+%include "screen/print-string-pm.asm"
 %include "screen/clear_screen.asm"
 
 [bits 16]
