@@ -47,5 +47,5 @@ ${BUILD}:
 	mkdir build
 
 clean:
-	$(DELETE) *.o *.tmp *.bin
+	$(DELETE) */*.o */*.bin *.tmp
 	rmdir /S /Q build
